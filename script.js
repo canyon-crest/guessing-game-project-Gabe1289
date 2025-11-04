@@ -2,6 +2,10 @@
 let level, answer, score;
 const levelArr= document.getElementsByName("level");
 const scoreArr = [];
+const monthArr = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December" ];
+const suffixArr = ["st", "nd", "rd", "th", "th","th","th","th","th","th","th","th","th","th","th","th","th","th","th","th","st","nd","rd","th","th","th","th","th","th","th","st"];
+const dayArr = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
+
 date.textContent = time();
 //event listeners
 playBtn.addEventListener("click",play);
@@ -75,7 +79,17 @@ function updateScore(){
 }
 function time(){
     let d = new Date();
-    d = d.getFullYear()+" "+d.getTime();
+    let nowTime = d.getHours()+":"+d.getMinutes()+":"+d.getSeconds();
+
+    d = dayArr[d.getDay()]+", "+ monthArr[d.getMonth()]+" " + d.getDate()+suffixArr[d.getDate()]+", "+ d.getFullYear() + " " + nowTime;
     return d;
 }
+setInterval(time(), 1000);
+
+
+
+
+
+
+
 
