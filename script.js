@@ -9,13 +9,14 @@ const dayArr = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Sat
 //event listeners
 playBtn.addEventListener("click",play);
 guessBtn.addEventListener("click",makeGuess);
-
+giveUp.addEventListener("click", forfeit);
 //play button
 function play(){
     score = 0;
     playBtn.disabled = true;
     guessBtn.disabled = false;
     guess.disabled = false;
+    giveUp.disabled = false;
     for(let i=0;i<levelArr.length;i++){
         if(levelArr[i].checked){
             level = levelArr[i].value;
@@ -54,6 +55,7 @@ function reset(){
     playBtn.disabled = false;
     guessBtn.disabled = true;
     guess.disabled = true;
+    giveUp.disabled = true;
     guess.value = "";
     guess.placeholder = "";
     for(let i=0;i<levelArr.length;i++){
@@ -75,6 +77,12 @@ function updateScore(){
     let avg = sum/scoreArr.length;
     avgScore.textContent = "Average Score: "+avg.toFixed(2);
 
+}
+function forfeit(){
+    msg.textContent = "Womp Womp. The answer was "+ answer;
+    score = Number(level);
+    updateScore();
+    reset();    
 }
 function time(){
     let d = new Date();
