@@ -6,7 +6,6 @@ const monthArr = ["January", "February", "March", "April", "May", "June", "July"
 const suffixArr = ["st", "nd", "rd", "th", "th","th","th","th","th","th","th","th","th","th","th","th","th","th","th","th","st","nd","rd","th","th","th","th","th","th","th","st"];
 const dayArr = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
 
-date.textContent = time();
 //event listeners
 playBtn.addEventListener("click",play);
 guessBtn.addEventListener("click",makeGuess);
@@ -79,12 +78,13 @@ function updateScore(){
 }
 function time(){
     let d = new Date();
-    let nowTime = d.getHours()+":"+d.getMinutes()+":"+d.getSeconds();
-
-    d = dayArr[d.getDay()]+", "+ monthArr[d.getMonth()]+" " + d.getDate()+suffixArr[d.getDate()]+", "+ d.getFullYear() + " " + nowTime;
-    return d;
+    d = dayArr[d.getDay()]+", "+ monthArr[d.getMonth()]+" " + d.getDate()+suffixArr[d.getDate()]+", "+ d.getFullYear() + " " +  d.getHours()+":"+d.getMinutes()+":"+d.getSeconds();
+    date.textContent = d;
+    
 }
-setInterval(time(), 1000);
+setInterval(time, 1000);
+
+
 
 
 
