@@ -1,5 +1,5 @@
 // global vars
-let level, answer, score;
+let level, answer, score, userName, displayName;
 const levelArr= document.getElementsByName("level");
 const scoreArr = [];
 const monthArr = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December" ];
@@ -10,6 +10,13 @@ const dayArr = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Sat
 playBtn.addEventListener("click",play);
 guessBtn.addEventListener("click",makeGuess);
 giveUp.addEventListener("click", forfeit);
+setName.addEventListener("click", nameSetter);
+
+function nameSetter(){
+    userName = document.getElementById("user").value;
+    displayName = userName.charAt(0).toUpperCase() + userName.slice(1);
+    console.log(userName);
+}
 //play button
 function play(){
     score = 0;
@@ -23,7 +30,8 @@ function play(){
         }
         levelArr[i].disabled = true;
     }
-    msg.textContent ="Guess a number from 1-" +  level;
+    
+    msg.textContent = "Guess a number from 1-" + level + ", " + displayName;
     answer = Math.floor(Math.random()*level)+1;
     guess.placeholder = answer;
 }
@@ -35,17 +43,17 @@ function makeGuess(){
     }
     score++;//add 1 to score for valid guess
     if(userGuess>answer){
-        msg.textContent = userGuess + " is too high, try again.";
+        msg.textContent = userGuess + " is too high, try again "+displayName;
     }
     else if(userGuess<answer){
-        msg.textContent = userGuess + " is too low, try again.";
+        msg.textContent = userGuess + " is too low, try again "+displayName;
     }
     else{
         if(score==1){
-            msg.textContent = userGuess + " is correct! You got it first try!";
+            msg.textContent = userGuess + " is correct "+displayName+"! You got it first try!";
         }
         else{
-            msg.textContent = userGuess + " is correct! Took you "+score+" tries!";
+            msg.textContent = userGuess + " is correct "+displayName+"! Took you "+score+" tries!";
         }
         updateScore();
         reset();
