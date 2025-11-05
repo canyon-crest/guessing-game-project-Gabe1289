@@ -14,8 +14,13 @@ setName.addEventListener("click", nameSetter);
 
 function nameSetter(){
     userName = document.getElementById("user").value;
-    displayName = userName.charAt(0).toUpperCase() + userName.slice(1);
+    displayName = userName.charAt(0).toUpperCase() + userName.slice(1).toLowerCase();
     console.log(userName);
+    playBtn.disabled = false;
+    setName.disabled = true;
+    if(userName == ""){
+        displayName = "Player";
+    }
 }
 //play button
 function play(){
@@ -49,11 +54,21 @@ function makeGuess(){
         msg.textContent = userGuess + " is too low, try again "+displayName;
     }
     else{
+        if (score<level/4){
+                scoreGoodness = "Great Score!";
+            }
+            else if(score<level/2){
+                scoreGoodness = "Decent Score!";
+            }
+            else{
+                scoreGoodness = "Atrocious Score!"
+            }
         if(score==1){
             msg.textContent = userGuess + " is correct "+displayName+"! You got it first try!";
         }
         else{
-            msg.textContent = userGuess + " is correct "+displayName+"! Took you "+score+" tries!";
+            msg.textContent = userGuess + " is correct "+displayName+"! Took you "+score+" tries! "+scoreGoodness;
+
         }
         updateScore();
         reset();
@@ -66,6 +81,7 @@ function reset(){
     giveUp.disabled = true;
     guess.value = "";
     guess.placeholder = "";
+    setName.disabled = false;
     for(let i=0;i<levelArr.length;i++){
         levelArr[i].disabled = false;
     }
@@ -115,11 +131,6 @@ function time(){
     
 }
 setInterval(time, 1000);
-
-
-
-
-
 
 
 
