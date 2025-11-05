@@ -87,12 +87,22 @@ function forfeit(){
 function time(){
     let d = new Date();
     let seconds;
+    let minutes;
+    let hours;
     seconds = d.getSeconds();
+    minutes = d.getMinutes();
+    hours = d.getHours();
     if(seconds<10){
         seconds = "0"+seconds;
     }
+    if(minutes<10){
+        minutes = "0"+minutes;
+    }
+    if(hours<10){
+        hours = "0"+hours;
+    }
 
-    d = dayArr[d.getDay()]+", "+ monthArr[d.getMonth()]+" " + d.getDate()+suffixArr[d.getDate()]+", "+ d.getFullYear() + " " +  d.getHours()+":"+d.getMinutes()+":"+seconds;
+    d = dayArr[d.getDay()]+", "+ monthArr[d.getMonth()]+" " + d.getDate()+suffixArr[d.getDate()]+", "+ d.getFullYear() + " " +  hours+":"+minutes+":"+seconds;
     date.textContent = d;
     
 }
