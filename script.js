@@ -78,7 +78,13 @@ function updateScore(){
 }
 function time(){
     let d = new Date();
-    d = dayArr[d.getDay()]+", "+ monthArr[d.getMonth()]+" " + d.getDate()+suffixArr[d.getDate()]+", "+ d.getFullYear() + " " +  d.getHours()+":"+d.getMinutes()+":"+d.getSeconds();
+    let seconds;
+    seconds = d.getSeconds();
+    if(seconds<10){
+        seconds = "0"+seconds;
+    }
+
+    d = dayArr[d.getDay()]+", "+ monthArr[d.getMonth()]+" " + d.getDate()+suffixArr[d.getDate()]+", "+ d.getFullYear() + " " +  d.getHours()+":"+d.getMinutes()+":"+seconds;
     date.textContent = d;
     
 }
