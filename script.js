@@ -54,7 +54,6 @@ function play(){
     
     msg.textContent = "Guess a number from 1-" + level + ", " + displayName;
     answer = Math.floor(Math.random()*level)+1;
-    guess.placeholder = answer;
     startTime = initialDate.getTime();
 }
 function makeGuess(){
